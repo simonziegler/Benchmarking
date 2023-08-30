@@ -2,6 +2,4 @@
 using BenchmarkDotNet.Running;
 using Net7;
 
-Console.WriteLine("Hello, World!");
-
 var summary = BenchmarkRunner.Run<DictionaryBenchmarker>();

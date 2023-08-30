@@ -1,5 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
 using System.Collections.Immutable;
+using System.Linq;
 
 namespace Net7;
 
@@ -26,14 +27,28 @@ public class DictionaryBenchmarker
 
 
     [Benchmark]
-    public string Dictionary()
+    public void CreateDictionary()
+    {
+        _ = _dict.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+    }
+
+
+    [Benchmark]
+    public void CreateImmutableDictionary()
+    {
+        _ = _dict.ToImmutableDictionary();
+    }
+
+
+    [Benchmark]
+    public string ReadDictionary()
     {
         return _dict[_searchKey];
     }
 
 
     [Benchmark]
-    public string ImmutableDictionary()
+    public string ReadImmutableDictionary()
     {
         return _immutableDict[_searchKey];
     }
